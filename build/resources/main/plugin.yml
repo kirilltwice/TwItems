@@ -1,0 +1,11 @@
+name: TwItems
+main: dev.twice.twitems.Main
+
+authors: [Twice, alexec0de]
+website: kirilltwice.pro
+
+version: '1.0-SNAPSHOT'
+api-version: '1.16'
+
+commands:
+  giveitem: {}

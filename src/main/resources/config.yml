@@ -1,0 +1,17 @@
+
+
+items:
+  test:
+    material: DIAMOND
+    displayName: "Очень крутой алмаз"
+    lore:
+      - ""
+      - "&fЭтот алмаз вам даст дополнительные сердца"
+      - ""
+    attributes:
+      - GENERIC_MAX_HEALTH;20;OFF_HAND
+    enchants:
+      - LUCK;2
+    unbreakable: false
+    hideAttributes: true
+    hideEnchants: true
