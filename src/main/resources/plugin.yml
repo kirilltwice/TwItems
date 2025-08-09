@@ -1,7 +1,7 @@
 name: TwItems
 main: dev.twice.twitems.Main
 
-authors: [Twice, alexec0de]
+authors: [ Twice ]
 website: kirilltwice.pro
 
 version: '${version}'
@@ -9,3 +9,4 @@ api-version: '1.16'
 
 commands:
   giveitem: {}
+  twitems: {}
