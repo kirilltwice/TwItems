@@ -1,4 +1,7 @@
-
+#
+# Материалы: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# Атрибуты: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/attribute/Attribute.html
+#
 
 items:
   test:
