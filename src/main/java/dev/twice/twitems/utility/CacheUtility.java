@@ -1,5 +1,6 @@
-package dev.twice.twitems.utils;
+package dev.twice.twitems.utility;
 
+import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -14,7 +15,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-public class CacheUtil {
+@UtilityClass
+public class CacheUtility {
 
     private static final Map<String, Material> MATERIALS = Arrays.stream(Material.values())
             .collect(Collectors.toUnmodifiableMap(Material::name, m -> m));
@@ -28,8 +30,6 @@ public class CacheUtil {
     private static final Map<String, ItemStack> ITEMS = new ConcurrentHashMap<>();
     private static final Map<Material, ItemStack> ITEMS_BY_MATERIAL = new ConcurrentHashMap<>();
     private static volatile Set<String> MATERIAL_NAMES = Set.of();
-
-    private CacheUtil() {}
 
     public static Material getMaterial(String name) {
         return MATERIALS.get(name);
@@ -102,12 +102,12 @@ public class CacheUtil {
 
         var displayName = section.getString("displayName");
         if (displayName != null) {
-            meta.setDisplayName(HexUtil.translate(displayName));
+            meta.setDisplayName(HexUtilty.translate(displayName));
         }
 
         var lore = section.getStringList("lore");
         if (!lore.isEmpty()) {
-            meta.setLore(lore.stream().map(HexUtil::translate).toList());
+            meta.setLore(lore.stream().map(HexUtilty::translate).toList());
         }
 
         var attributes = section.getStringList("attributes");

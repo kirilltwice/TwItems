@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
 @RequiredArgsConstructor
-public class ConfigManager {
+public class ConfigService {
 
     private final Plugin plugin;
     private FileConfiguration config;

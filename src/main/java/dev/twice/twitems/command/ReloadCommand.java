@@ -1,6 +1,6 @@
 package dev.twice.twitems.command;
 
-import dev.twice.twitems.Main;
+import dev.twice.twitems.ItemsPlugin;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 @RequiredArgsConstructor
 public class ReloadCommand implements CommandExecutor {
 
-    private final Main plugin;
+    private final ItemsPlugin plugin;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

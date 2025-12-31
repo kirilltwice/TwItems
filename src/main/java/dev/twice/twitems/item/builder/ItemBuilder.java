@@ -1,6 +1,6 @@
 package dev.twice.twitems.item.builder;
 
-import dev.twice.twitems.utils.HexUtil;
+import dev.twice.twitems.utility.HexUtilty;
 import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
@@ -22,7 +22,7 @@ public class ItemBuilder {
 
     public ItemBuilder setDisplayName(String name) {
         if (itemMeta != null) {
-            itemMeta.setDisplayName(HexUtil.translate(name));
+            itemMeta.setDisplayName(HexUtilty.translate(name));
         }
         return this;
     }
@@ -30,7 +30,7 @@ public class ItemBuilder {
     public ItemBuilder setLore(List<String> lore) {
         if (itemMeta != null && !lore.isEmpty()) {
             itemMeta.setLore(lore.stream()
-                    .map(HexUtil::translate)
+                    .map(HexUtilty::translate)
                     .toList());
         }
         return this;

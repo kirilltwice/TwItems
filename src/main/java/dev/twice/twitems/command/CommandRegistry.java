@@ -1,13 +1,13 @@
 package dev.twice.twitems.command;
 
-import dev.twice.twitems.Main;
+import dev.twice.twitems.ItemsPlugin;
 import dev.twice.twitems.item.ItemService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public final class CommandRegistry {
 
-    private final Main plugin;
+    private final ItemsPlugin plugin;
     private final ItemService itemService;
 
     public void registerAll() {

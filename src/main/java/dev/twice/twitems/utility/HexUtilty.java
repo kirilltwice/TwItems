@@ -1,11 +1,13 @@
-package dev.twice.twitems.utils;
+package dev.twice.twitems.utility;
 
+import lombok.experimental.UtilityClass;
 import net.md_5.bungee.api.ChatColor;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HexUtil {
+@UtilityClass
+public class HexUtilty {
     private static final Pattern PATTERN = Pattern.compile("&#([A-Fa-f0-9]{6})");
 
     public static String translate(String message) {

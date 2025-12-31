@@ -1,5 +1,6 @@
 package dev.twice.twitems.item;
 
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -8,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Getter
 public class ItemManager {
 
     private final Map<String, ItemStack> itemsByKey = new ConcurrentHashMap<>();
@@ -33,10 +35,6 @@ public class ItemManager {
         } catch (IllegalArgumentException e) {
             return Optional.empty();
         }
-    }
-
-    public Set<String> getMaterialNames() {
-        return materialNames;
     }
 
     public void clear() {

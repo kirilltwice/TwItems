@@ -1,6 +1,6 @@
 package dev.twice.twitems.item;
 
-import dev.twice.twitems.config.ConfigManager;
+import dev.twice.twitems.config.ConfigService;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.inventory.ItemStack;
 
@@ -10,25 +10,23 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class ItemService {
 
-    private final ConfigManager configManager;
-    private final ItemParser itemParser = new ItemParser();
-    private final ItemFactory itemFactory = new ItemFactory();
+    private final ConfigService configService;
     private final ItemManager itemManager = new ItemManager();
 
     public void loadItems() {
         itemManager.clear();
 
-        var section = configManager.getItemsSection();
+        var section = configService.getItemsSection();
         if (section == null) return;
 
         for (String key : section.getKeys(false)) {
             var itemSection = section.getConfigurationSection(key);
             if (itemSection == null) continue;
 
-            var itemData = itemParser.parseItemData(itemSection);
+            var itemData = ItemParser.parseItemData(itemSection);
             if (itemData == null) continue;
 
-            var item = itemFactory.createItem(itemData);
+            var item = ItemFactory.createItem(itemData);
             if (item != null) {
                 itemManager.addItem(key, item);
             }

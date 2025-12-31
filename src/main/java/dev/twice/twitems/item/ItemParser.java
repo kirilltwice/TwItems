@@ -3,7 +3,9 @@ package dev.twice.twitems.item;
 import dev.twice.twitems.item.data.AttributeData;
 import dev.twice.twitems.item.data.EnchantData;
 import dev.twice.twitems.item.data.ItemData;
-import dev.twice.twitems.utils.CacheUtil;
+import dev.twice.twitems.utility.CacheUtility;
+import lombok.experimental.UtilityClass;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -11,15 +13,26 @@ import org.bukkit.inventory.ItemFlag;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
+@UtilityClass
 public class ItemParser {
 
     public ItemData parseItemData(ConfigurationSection section) {
         var materialName = section.getString("material");
         if (materialName == null) return null;
 
-        var material = CacheUtil.getMaterial(materialName);
+        Material material;
+        String texture = null;
+
+        if (materialName.startsWith("PLAYER_HEAD;")) {
+            material = Material.PLAYER_HEAD;
+            texture = materialName.substring("PLAYER_HEAD;".length());
+        } else {
+            material = CacheUtility.getMaterial(materialName);
+        }
+
         if (material == null) return null;
 
         var displayName = section.getString("displayName");
@@ -28,14 +41,15 @@ public class ItemParser {
         var enchants = parseEnchants(section.getStringList("enchants"));
         var unbreakable = section.getBoolean("unbreakable", false);
         var flags = parseFlags(section);
+        var placeable = section.getBoolean("placeable", true);
 
-        return new ItemData(material, displayName, lore, attributes, enchants, unbreakable, flags);
+        return new ItemData(material, displayName, lore, attributes, enchants, unbreakable, flags, texture, placeable);
     }
 
     private List<AttributeData> parseAttributes(List<String> attributesList) {
         return attributesList.stream()
-                .map(this::parseAttribute)
-                .filter(attr -> attr != null)
+                .map(ItemParser::parseAttribute)
+                .filter(Objects::nonNull)
                 .toList();
     }
 
@@ -44,9 +58,9 @@ public class ItemParser {
             var parts = attributeStr.split(";");
             if (parts.length < 3) return null;
 
-            var attribute = CacheUtil.getAttribute(parts[0]);
+            var attribute = CacheUtility.getAttribute(parts[0]);
             var value = Double.parseDouble(parts[1]);
-            var slot = CacheUtil.getSlot(parts[2]);
+            var slot = CacheUtility.getSlot(parts[2]);
 
             return (attribute != null && slot != null) ?
                     new AttributeData(attribute, value, slot) : null;
@@ -57,7 +71,7 @@ public class ItemParser {
 
     private List<EnchantData> parseEnchants(List<String> enchantsList) {
         return enchantsList.stream()
-                .map(this::parseEnchant)
+                .map(ItemParser::parseEnchant)
                 .filter(ench -> ench != null)
                 .toList();
     }

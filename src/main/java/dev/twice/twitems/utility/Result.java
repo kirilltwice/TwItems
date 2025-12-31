@@ -1,23 +1,16 @@
-package dev.twice.twitems.utils;
+package dev.twice.twitems.utility;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
-@AllArgsConstructor
-public final class Result<T> {
+@Value
+public class Result<T> {
 
-    @Getter
-    private final T value;
-
-    @Getter
-    private final Exception error;
-
-    @Getter
-    private final boolean success;
+    T value;
+    Exception error;
+    boolean success;
 
     public static <T> Result<T> success(T value) {
         return new Result<>(value, null, true);

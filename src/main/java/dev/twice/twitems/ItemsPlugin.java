@@ -2,18 +2,19 @@ package dev.twice.twitems;
 
 import dev.twice.twitems.command.GiveItemCommand;
 import dev.twice.twitems.command.ReloadCommand;
-import dev.twice.twitems.config.ConfigManager;
+import dev.twice.twitems.config.ConfigService;
 import dev.twice.twitems.item.ItemService;
+import dev.twice.twitems.listener.BlockPlaceListener;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+public class ItemsPlugin extends JavaPlugin {
 
     @Getter
-    private static Main instance;
+    private static ItemsPlugin instance;
 
     @Getter
-    private ConfigManager configManager;
+    private ConfigService configService;
 
     @Getter
     private ItemService itemService;
@@ -22,11 +23,13 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        configManager = new ConfigManager(this);
-        itemService = new ItemService(configManager);
+        configService = new ConfigService(this);
+        itemService = new ItemService(configService);
 
-        configManager.initialize();
+        configService.initialize();
         itemService.loadItems();
+
+        getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), this);
 
         setupCommands();
     }
@@ -49,7 +52,7 @@ public class Main extends JavaPlugin {
     }
 
     public void reload() {
-        configManager.reload();
+        configService.reload();
         itemService.reloadItems();
     }
 }

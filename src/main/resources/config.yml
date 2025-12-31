@@ -18,3 +18,12 @@ items:
     unbreakable: false
     hideAttributes: true
     hideEnchants: true
+
+  test_head:
+    material: PLAYER_HEAD;eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjMzNTk1ZGQyMWYyMzJiNDM3ZTk3ZDI0NTkyZWE1YTk4NjY1YjY3ZDJkY2U1NjI4ZmQ5ZmVhYTQ4YWM2ZCJ9fX0=
+    displayName: "&eЗолотая Голова"
+    lore:
+      - ""
+      - "&7Эту голову нельзя поставить!"
+      - ""
+    placeable: false
